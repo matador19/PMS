@@ -56,19 +56,42 @@
     
 {% if user.is_authenticated %}
 <!-- MAIN CONTENT -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          1 of 2
+    <div class="container">
+      <div class="row card justify-content-md-center mt-2 mb-5">
+        <div class="col text-center">
+          <h2>{{Githuraiproperty.propertyName}}</h2>
         </div>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>HouseNumber</th>
+            </tr>
+            {% for GithuraiTenant in GithuraiTenants %}
+            <tr>
+              <td>{{GithuraiTenant.TenantName}}</td>
+              <td>{{GithuraiTenant.HouseNumber}}</td>
+            </tr>
+            {% endfor %}            
+          </table>
       </div>
-      <div class="row">
-        <div class="col">
-          1 of 2
+      <div class="row card justify-content-md-center mb-5">
+        <div class="col text-center">
+         <h2>{{Roysambuproperty.propertyName}}</h2>
         </div>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>HouseNumber</th>
+          </tr>
+          {% for RoysambuTenant in RoysambuTenants %}
+          <tr>
+            <td>{{RoysambuTenant.TenantName}}</td>
+            <td>{{RoysambuTenant.HouseNumber}}</td>
+          </tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
-
 {% else %}
 <h2>KINDLY LOGIN WITH YOUR CREDENTIALS</h2>
 <a href="{% url 'login' %}">Log In</a>
