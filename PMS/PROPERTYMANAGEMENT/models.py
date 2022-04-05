@@ -21,7 +21,7 @@ class Tenant(models.Model):
 
 class HouseAllocation(models.Model):
     propertyName=models.ForeignKey(Property,null=True,on_delete=models.SET_NULL)
-    HouseNumber=models.CharField(max_length=255)
+    HouseNumber=models.CharField(max_length=255,unique=False)
     TenantName=models.ForeignKey(Tenant,null=True,on_delete=models.SET_NULL)
 
     def __str__(self):

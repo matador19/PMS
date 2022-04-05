@@ -7,7 +7,6 @@ def home(request):
     Roysambuproperty=Property.objects.get(propertyName="Roysambu Property")
     GithuraiTenants = HouseAllocation.objects.filter(propertyName=1)
     RoysambuTenants = HouseAllocation.objects.filter(propertyName=2)
-    print(GithuraiTenants)
     return render(request,'home.html',{'Githuraiproperty':Githuraiproperty,'Roysambuproperty':Roysambuproperty,'GithuraiTenants':GithuraiTenants,'RoysambuTenants':RoysambuTenants})
 
 def Githurai(request):
