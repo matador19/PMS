@@ -1,3 +1,5 @@
+from time import strftime
+from datetime import datetime
 from tkinter import CASCADE
 from django.db import models
 
@@ -30,3 +32,13 @@ class HouseAllocation(models.Model):
         labelthree=str(self.TenantName)
         label=labelone+': '+labeltwo+': '+labelthree
         return label
+
+
+class Payments(models.Model):
+    AccountNumber=models.CharField(max_length=15,null=True)
+    AmountToBePaid=models.IntegerField()
+    AmountPaid=models.IntegerField()
+    Date=models.CharField(max_length=7,default=datetime.now().strftime("%m"))
+
+    def __str__(self):
+        return self.AccountNumber

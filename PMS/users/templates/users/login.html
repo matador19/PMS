@@ -18,6 +18,8 @@
     <![endif]-->
   </head>
 <body>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+<div class="border border-5 rounded p-2">
 <form method="post">
   {% csrf_token %}
   <fieldset class="form-group">
@@ -28,5 +30,7 @@
       <button class="btn btn-primary" type="submit">Log In</button>
   </fieldset>
 </form>
+</div>
+</div>
 </body>
 </html>

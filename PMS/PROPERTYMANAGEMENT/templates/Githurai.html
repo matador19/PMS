@@ -27,10 +27,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link disabled" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'PMS-home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'Githurai' %}">Githurai Tenants</a>
+              <a class="nav-link disabled" href="#">Githurai Tenants</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'Roysambu' %}">Roysambu Tenants</a>
@@ -58,35 +58,47 @@
         <div class="col text-center">
           <h2>{{Githuraiproperty.propertyName}}</h2>
         </div>
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Month</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">January</a></li>
+            <li><a class="dropdown-item" href="#">February</a></li>
+            <li><a class="dropdown-item" href="#">March</a></li>
+            <li><a class="dropdown-item" href="#">April</a></li>
+            <li><a class="dropdown-item" href="#">May</a></li>
+            <li><a class="dropdown-item" href="#">June</a></li>
+            <li><a class="dropdown-item" href="#">July</a></li>
+            <li><a class="dropdown-item" href="#">August</a></li>
+            <li><a class="dropdown-item" href="#">September</a></li>
+            <li><a class="dropdown-item" href="#">October</a></li>
+            <li><a class="dropdown-item" href="#">November</a></li>
+            <li><a class="dropdown-item" href="#">December</a></li>
+          </ul>
+        </div>
           <table class="bg-secondary text-white">
             <tr style="background: cornflowerblue;border: 2px solid royalblue;">
               <th>Name</th>
               <th>HouseNumber</th>
+              <th>Amount to be paid</th>
+              <th>Amount paid</th>
+              <th>Balance</th>
+              <th>Status</th>
             </tr>
-            {% for GithuraiTenant in GithuraiTenants %}
+            {% for payment in all_payments %}`  
             <tr class="border-3">
-              <td>{{GithuraiTenant.TenantName}}</td>
-              <td>{{GithuraiTenant.HouseNumber}}</td>
+              <td>{{payment.TenantName}}</td>
+              <td class="text-center">{{payment.AccountNumber}}</td>
+              <td>{{payment.AmountToBePaid}}</td>
+              <td>{{payment.AmountPaid}}</td>
+              <td>{{payment.Balance}}</td>
+              {% if payment.Balance < 0 %}
+              <td class="badge bg-danger">Not paid</td>
+              {% else %}
+              <td class="badge bg-success">paid</td>
+              {% endif %}
             </tr>
-            {% endfor %}            
+            {% endfor %}        
           </table>
-      </div>
-      <div class="row card justify-content-md-center mb-5">
-        <div class="col text-center">
-         <h2>{{Roysambuproperty.propertyName}}</h2>
-        </div>
-        <table class="bg-secondary text-white">
-          <tr style="background: cornflowerblue;border: 2px solid royalblue;">
-            <th>Name</th>
-            <th>HouseNumber</th>
-          </tr>
-          {% for RoysambuTenant in RoysambuTenants %}
-          <tr class="border-3">
-            <td>{{RoysambuTenant.TenantName}}</td>
-            <td>{{RoysambuTenant.HouseNumber}}</td>
-          </tr>
-          {% endfor %}
-        </table>
       </div>
     </div>
 {% else %}
