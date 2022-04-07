@@ -17,20 +17,21 @@
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
   </head>
-<body>
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-<div class="border border-5 rounded p-2">
-<form method="post">
-  {% csrf_token %}
-  <fieldset class="form-group">
-      <legend>
-          LOGIN
-      </legend>
-      {{ form.as_p }}
-      <button class="btn btn-primary" type="submit">Log In</button>
-  </fieldset>
-</form>
-</div>
-</div>
+{% load static %}
+<body style="background-image: url('{% static "users/background-login.jpg" %}');">
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="border border-5 rounded p-2">
+  <form method="post">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend>
+            LOGIN
+        </legend>
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </fieldset>
+  </form>
+  </div>
+  </div>
 </body>
 </html>
