@@ -13,7 +13,7 @@ class Property(models.Model):
         return self.propertyName
 
 class Tenant(models.Model):
-    TenantId=models.BigIntegerField()
+    TenantId=models.BigIntegerField(unique=True)
     TenantName=models.CharField(max_length=255)
     TenantPhone=models.CharField(max_length=255)
 
