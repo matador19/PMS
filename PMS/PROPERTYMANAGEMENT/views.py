@@ -1,12 +1,19 @@
+from ast import Return
 from asyncio.windows_events import NULL
 from gettext import NullTranslations
 from itertools import chain
+import json
 from optparse import Values
 from time import strftime
 from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
+import requests
+import base64
 from .models import Property, Tenant, HouseAllocation,Payments
+
+
+
 # Create your views here.
 def home(request):
     Githuraiproperty=Property.objects.get(propertyName="Githurai Property")
@@ -71,3 +78,28 @@ def Roysambu(request):
 
     return render(request,'Roysambu.html',{'Roysambuproperty':Roysambuproperty,'all_payments':all_payments})
 
+
+def CustomerToBusiness(request):
+     #Customer ID
+    customer_key = "P5giKpFolWJzLQAqsLWYPJH7GWdS3X2A"
+    # Customer secret
+    customer_secret = "70otjSiYQptugMc6"
+    # Concatenate customer key and customer secret and use base64 to encode the concatenated string
+    credentials = customer_key + ":" + customer_secret
+    # Encode with base64
+    base64_credentials = base64.b64encode(credentials.encode("utf8"))
+    credential = base64_credentials.decode("utf8")
+    response = requests.request("GET", 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials', headers = { 'Authorization': 'Basic '+credential })
+    response=response.json()
+    token=response['access_token']
+    headers = {
+    'Authorization': 'Bearer '+token,
+     'Content-Type': 'application/json',
+    }
+    payload = {
+    
+    }
+    response = requests.request("POST", 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl', headers = headers, json=payload)
+    response=json.loads(response.text)
+    print(response)
+    return render(request,'Roysambu.html')

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!x@pop_w95yioyn!l5@kpldqp!q@r6tha4mis%2c&lz(9sf(3%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -119,9 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+#STATICFILES_DIRS = [
+ #   os.path.join(BASE_DIR, 'static'),
+#]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -129,3 +130,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'PMS-home'
 LOGOUT_REDIRECT_URL = 'login'
+#Change here below
+CSRF_TRUSTED_ORIGINS = ['https://f62b-41-90-115-26.ngrok.io']
