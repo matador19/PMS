@@ -91,7 +91,7 @@
               <td>{{payment.AmountToBePaid}}</td>
               <td>{{payment.AmountPaid}}</td>
               <td>{{payment.Balance}}</td>
-              {% if payment.Balance < 0 %}
+              {% if payment.Balance > 0 %}
               <td class="badge bg-danger">Not paid</td>
               {% else %}
               <td class="badge bg-success">paid</td>

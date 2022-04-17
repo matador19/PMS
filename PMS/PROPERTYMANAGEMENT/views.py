@@ -37,7 +37,7 @@ def Githurai(request):
         TenantPayments= Payments.objects.filter(AccountNumber=HouseNumber).values()
         for TenantPayment in TenantPayments:
             TenantPayment['TenantName']=str(TenantName)
-            TenantPayment['Balance']=TenantPayment['AmountPaid']-TenantPayment['AmountToBePaid']
+            TenantPayment['Balance']=TenantPayment['AmountToBePaid']-TenantPayment['AmountPaid']
             all_payments.append(TenantPayment)
     today= datetime.now().strftime("%d")
     if today > "05":
@@ -65,13 +65,13 @@ def Roysambu(request):
         TenantPayments= Payments.objects.filter(AccountNumber=HouseNumber).values()
         for TenantPayment in TenantPayments:
             TenantPayment['TenantName']=str(TenantName)
-            TenantPayment['Balance']=TenantPayment['AmountPaid']-TenantPayment['AmountToBePaid']
+            TenantPayment['Balance']=TenantPayment['AmountToBePaid']-TenantPayment['AmountPaid']
             all_payments.append(TenantPayment)
 
     today= datetime.now().strftime("%d")
     if today > "05":
         pass
-
+    #print(datetime.now())
     PaymentThresholdOne=16500
     PaymentThresholdTwo=25000
     PaymentThresholdThree=30000
